@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { IsoUpdateBanner } from './components/IsoUpdateBanner';
-import { PainPoints } from './components/PainPoints';
-import { WorkflowSection } from './components/WorkflowSection';
-import { AiToolsShowcase } from './components/AiToolsShowcase';
-import { VideoDemoAccordion } from './components/VideoDemoAccordion';
-import { WorksheetsSection } from './components/WorksheetsSection';
-import { TargetAudience } from './components/TargetAudience';
-import { PricingOffer } from './components/PricingOffer';
-import { WhatsAppCheckout } from './components/WhatsAppCheckout';
-import { FaqSection } from './components/FaqSection';
-import { Footer } from './components/Footer';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+
+// Lazy load below-the-fold components for ultra-fast initial mobile LCP
+const IsoUpdateBanner = lazy(() => import('./components/IsoUpdateBanner').then(m => ({ default: m.IsoUpdateBanner })));
+const PainPoints = lazy(() => import('./components/PainPoints').then(m => ({ default: m.PainPoints })));
+const WorkflowSection = lazy(() => import('./components/WorkflowSection').then(m => ({ default: m.WorkflowSection })));
+const AiToolsShowcase = lazy(() => import('./components/AiToolsShowcase').then(m => ({ default: m.AiToolsShowcase })));
+const VideoDemoAccordion = lazy(() => import('./components/VideoDemoAccordion').then(m => ({ default: m.VideoDemoAccordion })));
+const WorksheetsSection = lazy(() => import('./components/WorksheetsSection').then(m => ({ default: m.WorksheetsSection })));
+const TargetAudience = lazy(() => import('./components/TargetAudience').then(m => ({ default: m.TargetAudience })));
+const PricingOffer = lazy(() => import('./components/PricingOffer').then(m => ({ default: m.PricingOffer })));
+const WhatsAppCheckout = lazy(() => import('./components/WhatsAppCheckout').then(m => ({ default: m.WhatsAppCheckout })));
+const FaqSection = lazy(() => import('./components/FaqSection').then(m => ({ default: m.FaqSection })));
+const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
+const FloatingWhatsApp = lazy(() => import('./components/FloatingWhatsApp').then(m => ({ default: m.FloatingWhatsApp })));
 
 export default function App() {
   const handleCheckoutScroll = () => {
@@ -30,55 +32,64 @@ export default function App() {
     const checkoutElem = document.getElementById('checkout');
     if (checkoutElem) {
       checkoutElem.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setTimeout(() => {
+        const el = document.getElementById('checkout');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 flex flex-col selection:bg-blue-900 selection:text-white">
-      {/* Top Fixed Navbar */}
+      {/* Top Fixed Navbar (Above the fold) */}
       <Navbar onCheckoutClick={handleCheckoutScroll} />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* 1. Hero Section */}
+        {/* 1. Hero Section (Immediate Critical LCP Render) */}
         <Hero onCheckoutClick={handleCheckoutScroll} />
 
-        {/* 2. ISO 9001:2026 Roadmap & Free Update Banner */}
-        <IsoUpdateBanner onCheckoutClick={handleCheckoutScroll} />
+        {/* Below-the-fold sections loaded progressively without blocking LCP */}
+        <Suspense fallback={<div className="min-h-[120px]" />}>
+          {/* 2. ISO 9001:2026 Roadmap & Free Update Banner */}
+          <IsoUpdateBanner onCheckoutClick={handleCheckoutScroll} />
 
-        {/* 3. Tantangan / Masalah Auditor */}
-        <PainPoints />
+          {/* 3. Tantangan / Masalah Auditor */}
+          <PainPoints />
 
-        {/* 4. Alur Kerja Sistem 4 Tahap */}
-        <WorkflowSection />
+          {/* 4. Alur Kerja Sistem 4 Tahap */}
+          <WorkflowSection />
 
-        {/* 5. 3 AI Tools Showcase */}
-        <AiToolsShowcase onCheckoutClick={handleCheckoutScroll} />
+          {/* 5. 3 AI Tools Showcase */}
+          <AiToolsShowcase onCheckoutClick={handleCheckoutScroll} />
 
-        {/* 6. Cuplikan Video Demo Produk */}
-        <VideoDemoAccordion />
+          {/* 6. Cuplikan Video Demo Produk */}
+          <VideoDemoAccordion />
 
-        {/* 8. 7 Worksheet & 9 Modul Panduan */}
-        <WorksheetsSection />
+          {/* 8. 7 Worksheet & 9 Modul Panduan */}
+          <WorksheetsSection />
 
-        {/* 10. Cocok Untuk Siapa */}
-        <TargetAudience />
+          {/* 10. Cocok Untuk Siapa */}
+          <TargetAudience />
 
-        {/* 11. Penawaran Paket & Pricing Promo Kemerdekaan */}
-        <PricingOffer onCheckoutClick={handleCheckoutScroll} />
+          {/* 11. Penawaran Paket & Pricing Promo Kemerdekaan */}
+          <PricingOffer onCheckoutClick={handleCheckoutScroll} />
 
-        {/* 12. WhatsApp Direct Checkout Section */}
-        <WhatsAppCheckout />
+          {/* 12. WhatsApp Direct Checkout Section */}
+          <WhatsAppCheckout />
 
-        {/* 13. FAQ */}
-        <FaqSection />
+          {/* 13. FAQ */}
+          <FaqSection />
+        </Suspense>
       </main>
 
-      {/* Footer */}
-      <Footer />
-
-      {/* Floating WhatsApp and Sticky Mobile CTAs */}
-      <FloatingWhatsApp />
+      {/* Footer & Floating Widgets loaded progressively */}
+      <Suspense fallback={null}>
+        <Footer />
+        <FloatingWhatsApp />
+      </Suspense>
     </div>
   );
 }
+

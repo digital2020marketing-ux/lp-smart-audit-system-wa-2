@@ -86,8 +86,11 @@ export const VideoDemoAccordion: React.FC = () => {
                         <img
                           src={demo.thumbnailUrl}
                           alt={demo.title}
+                          width="480"
+                          height="360"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 flex items-center justify-center transition-colors">
                           <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
