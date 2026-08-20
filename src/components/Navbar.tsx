@@ -49,8 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCheckoutClick }) => {
             <a href="#masalah" className="hover:text-blue-900 transition-colors">Tantangan Audit</a>
             <a href="#cara-kerja" className="hover:text-blue-900 transition-colors">Alur Sistem</a>
             <a href="#ai-tools" className="hover:text-blue-900 transition-colors">3 AI Tools</a>
-            <a href="#demo-video" className="hover:text-blue-900 transition-colors">Demo Video</a>
-            <a href="#worksheet" className="hover:text-blue-900 transition-colors">7 Worksheet</a>
+            <a href="#worksheet" className="hover:text-blue-900 transition-colors">7 Worksheet & Media</a>
             <a href="#faq" className="hover:text-blue-900 transition-colors">FAQ</a>
           </div>
 
@@ -100,13 +99,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onCheckoutClick }) => {
               className="block py-2 text-sm font-medium text-gray-700 hover:text-blue-900"
             >
               3 AI Tools Audit
-            </a>
-            <a
-              href="#demo-video"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-medium text-gray-700 hover:text-blue-900"
-            >
-              Demo Video Praktik
             </a>
             <a
               href="#worksheet"

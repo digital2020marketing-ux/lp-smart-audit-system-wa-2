@@ -7,7 +7,6 @@ const IsoUpdateBanner = lazy(() => import('./components/IsoUpdateBanner').then(m
 const PainPoints = lazy(() => import('./components/PainPoints').then(m => ({ default: m.PainPoints })));
 const WorkflowSection = lazy(() => import('./components/WorkflowSection').then(m => ({ default: m.WorkflowSection })));
 const AiToolsShowcase = lazy(() => import('./components/AiToolsShowcase').then(m => ({ default: m.AiToolsShowcase })));
-const VideoDemoAccordion = lazy(() => import('./components/VideoDemoAccordion').then(m => ({ default: m.VideoDemoAccordion })));
 const WorksheetsSection = lazy(() => import('./components/WorksheetsSection').then(m => ({ default: m.WorksheetsSection })));
 const TargetAudience = lazy(() => import('./components/TargetAudience').then(m => ({ default: m.TargetAudience })));
 const PricingOffer = lazy(() => import('./components/PricingOffer').then(m => ({ default: m.PricingOffer })));
@@ -64,10 +63,7 @@ export default function App() {
           {/* 5. 3 AI Tools Showcase */}
           <AiToolsShowcase onCheckoutClick={handleCheckoutScroll} />
 
-          {/* 6. Cuplikan Video Demo Produk */}
-          <VideoDemoAccordion />
-
-          {/* 8. 7 Worksheet & 9 Modul Panduan */}
+          {/* 6. 7 Worksheet & 9 Modul Panduan */}
           <WorksheetsSection />
 
           {/* 10. Cocok Untuk Siapa */}
