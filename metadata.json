@@ -1,0 +1,6 @@
+{
+  "name": "SMART Audit SYSTEM",
+  "description": "Panduan & AI Tools Audit Mutu Internal ISO 9001:2015 & ISO 9001:2026",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
