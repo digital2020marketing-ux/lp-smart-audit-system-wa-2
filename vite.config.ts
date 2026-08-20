@@ -15,14 +15,6 @@ export default defineConfig(() => {
       target: 'esnext',
       minify: 'esbuild' as const,
       cssMinify: true,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom'],
-            'icons': ['lucide-react'],
-          },
-        },
-      },
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.

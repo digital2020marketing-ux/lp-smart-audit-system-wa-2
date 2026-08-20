@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, ArrowRight, Menu, X, Sparkles } from 'lucide-react';
-import { CHECKOUT_WHATSAPP_URL } from '../data/auditContent';
+import { CHECKOUT_WHATSAPP_URL } from '../constants';
 
 interface NavbarProps {
   onCheckoutClick: () => void;
