@@ -16,6 +16,19 @@ const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.
 const FloatingWhatsApp = lazy(() => import('./components/FloatingWhatsApp').then(m => ({ default: m.FloatingWhatsApp })));
 
 export default function App() {
+  const [showBelowFold, setShowBelowFold] = React.useState(false);
+
+  React.useEffect(() => {
+    // Mount below-the-fold components smoothly after initial frame is painted
+    if ('requestIdleCallback' in window) {
+      const handle = (window as any).requestIdleCallback(() => setShowBelowFold(true), { timeout: 600 });
+      return () => (window as any).cancelIdleCallback(handle);
+    } else {
+      const timer = setTimeout(() => setShowBelowFold(true), 150);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   const handleCheckoutScroll = () => {
     // Track Meta Pixel InitiateCheckout
     if (typeof (window as any).fbq === 'function') {
@@ -28,6 +41,7 @@ export default function App() {
       });
     }
 
+    setShowBelowFold(true);
     const checkoutElem = document.getElementById('checkout');
     if (checkoutElem) {
       checkoutElem.scrollIntoView({ behavior: 'smooth' });
@@ -35,7 +49,7 @@ export default function App() {
       setTimeout(() => {
         const el = document.getElementById('checkout');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+      }, 150);
     }
   };
 
@@ -49,42 +63,46 @@ export default function App() {
         {/* 1. Hero Section (Immediate Critical LCP Render) */}
         <Hero onCheckoutClick={handleCheckoutScroll} />
 
-        {/* Below-the-fold sections loaded progressively without blocking LCP */}
-        <Suspense fallback={<div className="min-h-[120px]" />}>
-          {/* 2. ISO 9001:2026 Roadmap & Free Update Banner */}
-          <IsoUpdateBanner onCheckoutClick={handleCheckoutScroll} />
+        {/* Below-the-fold sections loaded progressively on idle without blocking initial LCP */}
+        {showBelowFold && (
+          <Suspense fallback={<div className="min-h-[120px]" />}>
+            {/* 2. ISO 9001:2026 Roadmap & Free Update Banner */}
+            <IsoUpdateBanner onCheckoutClick={handleCheckoutScroll} />
 
-          {/* 3. Tantangan / Masalah Auditor */}
-          <PainPoints />
+            {/* 3. Tantangan / Masalah Auditor */}
+            <PainPoints />
 
-          {/* 4. Alur Kerja Sistem 4 Tahap */}
-          <WorkflowSection />
+            {/* 4. Alur Kerja Sistem 4 Tahap */}
+            <WorkflowSection />
 
-          {/* 5. 3 AI Tools Showcase */}
-          <AiToolsShowcase onCheckoutClick={handleCheckoutScroll} />
+            {/* 5. 3 AI Tools Showcase */}
+            <AiToolsShowcase onCheckoutClick={handleCheckoutScroll} />
 
-          {/* 6. 7 Worksheet & 9 Modul Panduan */}
-          <WorksheetsSection />
+            {/* 6. 7 Worksheet & 9 Modul Panduan */}
+            <WorksheetsSection />
 
-          {/* 10. Cocok Untuk Siapa */}
-          <TargetAudience />
+            {/* 10. Cocok Untuk Siapa */}
+            <TargetAudience />
 
-          {/* 11. Penawaran Paket & Pricing Promo Kemerdekaan */}
-          <PricingOffer onCheckoutClick={handleCheckoutScroll} />
+            {/* 11. Penawaran Paket & Pricing Promo Kemerdekaan */}
+            <PricingOffer onCheckoutClick={handleCheckoutScroll} />
 
-          {/* 12. WhatsApp Direct Checkout Section */}
-          <WhatsAppCheckout />
+            {/* 12. WhatsApp Direct Checkout Section */}
+            <WhatsAppCheckout />
 
-          {/* 13. FAQ */}
-          <FaqSection />
-        </Suspense>
+            {/* 13. FAQ */}
+            <FaqSection />
+          </Suspense>
+        )}
       </main>
 
       {/* Footer & Floating Widgets loaded progressively */}
-      <Suspense fallback={null}>
-        <Footer />
-        <FloatingWhatsApp />
-      </Suspense>
+      {showBelowFold && (
+        <Suspense fallback={null}>
+          <Footer />
+          <FloatingWhatsApp />
+        </Suspense>
+      )}
     </div>
   );
 }
