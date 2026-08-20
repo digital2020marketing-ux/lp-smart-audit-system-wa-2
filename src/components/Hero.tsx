@@ -8,14 +8,14 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onCheckoutClick }) => {
   return (
     <header className="relative pt-20 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 hero-pattern border-b border-gray-200/60 overflow-hidden">
-      {/* Decorative gradient blur background */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-64 bg-blue-100/60 rounded-full blur-3xl -z-10 pointer-events-none" />
+      {/* Lightweight background accent */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-64 bg-blue-100/40 rounded-full -z-10 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
         
         {/* Top pill badge */}
         <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-blue-50 border border-blue-200 text-blue-900 px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-sm font-bold mb-4 sm:mb-6 shadow-xs max-w-full text-left">
-          <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse shrink-0" />
+          <span className="flex h-2 w-2 rounded-full bg-blue-600 shrink-0" />
           <span className="truncate sm:overflow-visible">Solusi Lengkap Audit Mutu Internal (AMI) ISO 9001</span>
         </div>
 
@@ -70,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ onCheckoutClick }) => {
         </div>
 
         {/* Price Box & Offer */}
-        <div className="mb-6 bg-white/90 backdrop-blur-sm p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm max-w-xl mx-auto">
+        <div className="mb-6 bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm max-w-xl mx-auto">
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2">
             <span className="text-gray-400 line-through text-sm sm:text-lg font-semibold">Rp497.000</span>
             <span className="text-2xl sm:text-4xl font-black text-red-600 tracking-tight">
