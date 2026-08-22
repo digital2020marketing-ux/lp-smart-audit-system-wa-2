@@ -73,7 +73,7 @@ export const PricingOffer: React.FC<PricingOfferProps> = ({ onCheckoutClick }) =
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                <span><strong>AI Assistant AMI</strong> — Teman Belajar & Konsultasi Kasus 24/7</span>
+                <span><strong>ISO 19011 Audit Assistant</strong> — Co-Pilot & Konsultasi Kasus 24/7</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />

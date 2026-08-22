@@ -34,8 +34,8 @@ export const Hero: React.FC<HeroProps> = ({ onCheckoutClick }) => {
           <strong className="text-gray-900 font-bold">SMART Audit SYSTEM</strong> menggabungkan panduan audit, worksheet siap pakai, slide presentasi, mind map & infografis per bab, 3 AI Tools, dan AI Assistant dalam satu dashboard praktis.
         </p>
 
-        {/* 4 Visual Benefits Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 mb-6 sm:mb-10 max-w-3xl mx-auto">
+        {/* 4 Visual Benefits Grid + Feature Tags */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 mb-4 max-w-3xl mx-auto">
           <div className="bg-white p-3.5 sm:p-5 rounded-2xl shadow-xs hover:shadow-md transition-shadow border border-gray-200 text-left flex flex-col items-start group">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-900 mb-1.5 sm:mb-2 group-hover:scale-105 transition-transform">
               <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -64,9 +64,25 @@ export const Hero: React.FC<HeroProps> = ({ onCheckoutClick }) => {
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-900 mb-1.5 sm:mb-2 group-hover:scale-105 transition-transform">
               <Bot className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div className="font-extrabold text-sm sm:text-lg text-gray-900 leading-tight">AI Assistant</div>
-            <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-0.5">Tanya Jawab ISO 24/7</div>
+            <div className="font-extrabold text-sm sm:text-lg text-gray-900 leading-tight">AI Co-Pilot</div>
+            <div className="text-[11px] sm:text-xs text-gray-500 font-medium leading-tight mt-0.5">ISO 19011 Assistant 24/7</div>
           </div>
+        </div>
+
+        {/* Supporting Toolkit Badges */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 sm:mb-10 max-w-2xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-900 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold">
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            Slide Presentasi PPTX
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-900 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold">
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            Mind Map & Infografis Per Bab
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-900 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold">
+            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+            1 Dashboard Praktis
+          </span>
         </div>
 
         {/* Price Box & Offer */}

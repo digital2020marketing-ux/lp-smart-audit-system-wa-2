@@ -167,6 +167,10 @@ export const FAQS: FaqItem[] = [
     answer: 'Sangat cocok. Materi disusun dari langkah paling awal, mulai dari pemahaman konsep dasar, bahasa yang mudah dipahami, contoh nyata, hingga template siap pakai dan AI yang memandu Anda membuat pertanyaan dan menulis laporan.'
   },
   {
+    question: 'Apa fungsi dari ISO 19011 Audit Assistant?',
+    answer: 'ISO 19011 Audit Assistant adalah co-pilot AI khusus untuk membantu Anda dalam perencanaan, pelaksanaan audit, evaluasi bukti objektif, penulisan temuan PLOR, verifikasi CAPA, hingga pemetaan komparasi standar ISO 19011:2018 ke ISO 19011:2026 secara interaktif 24/7.'
+  },
+  {
     question: 'Bagaimana dengan update ke ISO 9001:2026 nantinya?',
     answer: 'Jika Anda membeli sekarang di masa Promo Kemerdekaan, Anda berhak mendapatkan UPDATE GRATIS seluruh materi, modul, dan AI prompt ketika ISO 9001:2026 resmi diterbitkan tanpa biaya tambahan apapun.'
   },
